@@ -15,14 +15,11 @@
 ** Help and support: http://groups.google.com/group/DmxMaster */
 
 #include <DmxMaster.h>
+#include <SoctwareSerial.h>
 
-void setup() {
-  Serial.begin(9600);
-  Serial.println("SerialToDmx ready");
-  Serial.println();
-  Serial.println("Syntax:");
-  Serial.println(" 123c : use DMX channel 123");
-  Serial.println(" 45w : set current channel to value 45");
+Software Serial mySerial(7,6); // tx,rx pins
+
+void setup() 
 }
 
 int value = 0;
@@ -31,15 +28,15 @@ int channel;
 void loop() {
   int c;
 
-  while(!Serial.available());
-  c = Serial.read();
+  while(!mySerial.available());
+  c = mySerial.read();
   if ((c>='0') && (c<='9')) {
     value = 10*value + c - '0';
   } else {
     if (c=='c') channel = value;
     else if (c=='w') {
       DmxMaster.write(channel, value);
-      Serial.println();
+      mySerial.println();
     }
     value = 0;
   }
