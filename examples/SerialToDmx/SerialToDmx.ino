@@ -19,7 +19,8 @@
 
 Software Serial mySerial(7,6); // tx,rx pins
 
-void setup() 
+void setup() {
+  mySerial.begin (9600);
 }
 
 int value = 0;
