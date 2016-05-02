@@ -15,7 +15,7 @@
 ** Help and support: http://groups.google.com/group/DmxMaster */
 
 #include <DmxMaster.h>
-#include <SoctwareSerial.h>
+#include <SoftwareSerial.h>
 
 Software Serial mySerial(7,6); // tx,rx pins
 
@@ -37,7 +37,6 @@ void loop() {
     if (c=='c') channel = value;
     else if (c=='w') {
       DmxMaster.write(channel, value);
-      mySerial.println();
     }
     value = 0;
   }
