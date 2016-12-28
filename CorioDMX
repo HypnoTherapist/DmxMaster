@@ -17,10 +17,12 @@
 #include <DmxMaster.h>
 #include <SoftwareSerial.h>
 
-Software Serial mySerial(7,6); // tx,rx pins
+Software Serial mySerial(7,6);
 
 void setup() {
-  mySerial.begin (9600);
+  Serial1.begin(9600); // Serial in
+  Serial2.begin(9600); // Corio Out(pass through)
+  Serial3.begin(9600); // DMX out
 }
 
 int value = 0;
