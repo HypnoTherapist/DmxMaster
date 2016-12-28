@@ -15,9 +15,6 @@
 ** Help and support: http://groups.google.com/group/DmxMaster */
 
 #include <DmxMaster.h>
-#include <SoftwareSerial.h>
-
-Software Serial mySerial(7,6);
 
 void setup() {
   Serial1.begin(9600); // Serial in
