@@ -19,7 +19,6 @@
 void setup() {
   Serial1.begin(9600); // Serial in
   Serial2.begin(9600); // Corio Out(pass through)
-  Serial3.begin(9600); // DMX out
 }
 
 int value = 0;
@@ -27,6 +26,32 @@ int channel;
 
 void loop() {
   int c;
+
+  incoming = serial1.read()
+switch (incoming[0]) {
+    case C:
+      serial2.println(incoming + 1);
+      break;
+    case L:
+      c = (incoming + 1);
+      if ((c>='0') && (c<='9')) {
+        value = 10*value + c - '0';
+      } else {
+        if (c=='c') channel = value;
+        else if (c=='w') {
+          DmxMaster.write(channel, value);
+        }
+        value = 0;
+      }
+      break;
+    default: 
+      // if nothing else matches, do the default
+      // default is optional
+    break;
+  }
+
+
+
 
   while(!mySerial.available());
   c = mySerial.read();
